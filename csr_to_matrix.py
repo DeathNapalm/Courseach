@@ -1,4 +1,4 @@
-def matrix(alem,jptr,iptr):
+def matrix(alem,jptr,iptr,i,j):
     """int procedure(i,j)
         {
             AA=0; // значение искомого элемента
@@ -14,3 +14,12 @@ def matrix(alem,jptr,iptr):
             }
             return AA;
         }"""
+
+    res = 0
+    n1 = iptr[i]
+    n2 = iptr[i+1]
+    for i in range(n1,n2):
+        if jptr[i] == j:
+            res =alem[i]
+            break
+    return res
