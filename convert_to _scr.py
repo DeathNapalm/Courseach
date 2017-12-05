@@ -4,12 +4,15 @@ def scr(a):     #massiv strok
     iptr = []
     current_row = 0
     for row in range(len(a)):
-        for column in range(len(row)):
+        for column in range(len(a[row])):
             if a[row][column] != 0:
                 aelem.append(a[row][column])
                 jptr.append(column)
                 if row != current_row:
                     iptr.append(row)
+    return(aelem, jptr, iptr)
+
+
 if __name__ == '__main__':
     print(scr([[9,0,0,3,1,0,1],
                [0,11,2,1,0,0,2],
