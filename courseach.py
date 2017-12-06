@@ -9,7 +9,7 @@ def seidel(A, b, eps):
     n = len(A)
     x = [.0 for i in range(n)]
 
-    depth = 900
+    depth = 9
     converge = False
     while not converge :
         depth -=1

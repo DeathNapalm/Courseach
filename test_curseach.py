@@ -1,4 +1,5 @@
 from . import courseach
+from . import convert_to_scr
 import unittest
 
 
