@@ -1,7 +1,7 @@
 def scr(a):     #massiv strok
     aelem = []  #j  sto]bec, i stroka
     jptr = []
-    iptr = []
+    iptr = [0]
     current_row = 0
     counter = 0
     for row in range(len(a)):
@@ -9,11 +9,11 @@ def scr(a):     #massiv strok
             if a[row][column] != 0:
                 aelem.append(a[row][column])
                 counter += 1
-                jptr.append(column+1)
+                jptr.append(column)
                 if row != current_row:
-                    iptr.append(counter)
+                    iptr.append(counter-1)
                     current_row = row
-    iptr.append(counter+1)
+    iptr.append(counter)
 
 
     return aelem, jptr, iptr
@@ -27,5 +27,19 @@ if __name__ == '__main__':
                [1,0,0,1,12,0,1],
                [0,0,0,0,0,8,0],
                [2,2,0,0,3,0,8]]))
+
+    # print(scr([[0, 0, 2, 0, 0, 0],
+    #            [0, 0, 0, 0, 0, 0],
+    #            [0, 5, 0, 0, 0, 0],
+    #            [0, 0, 0, 0, 9, 1],
+    #            [0, 0, 0, 0, 0, 3],
+    #            [8, 0, 0, 4, 0, 0],]))
+    #
+    # print(scr([[0, 2, 0, 1, 0, 0],
+    #            [0, 0, 0, 0, 0, 0],
+    #            [0, 5, 0, 0, 0, 1],
+    #            [0, 0, 0, 0, 9, 1],
+    #            [0, 0, 0, 0, 0, 0],
+    #            [0, 8, 0, 4, 0, 3]]))
 
 
