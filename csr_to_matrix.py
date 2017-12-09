@@ -26,14 +26,11 @@ def matrix(alem,jptr,iptr,i,j):
 
 
 if __name__ == '__main__':
-    check = [[0]*7]*7
-    #print(check,sep='\n')
-    for i in range(7):
+    check = [[0]*6]*6
+    for i in range(6):
         print('\n')
-        for j in range(7):
-            print(matrix([9, 3, 1, 1, 11, 2, 1, 2, 1, 10, 2, 2, 1, 2, 9, 1, 1, 1, 12, 1, 8, 2, 2, 3, 8],
-                                 [0, 3, 4, 6, 1, 2, 3, 6, 1, 2, 3, 0, 1, 2, 3, 4, 0, 3, 4, 6, 5, 0, 1, 4, 6],
-                                 [0, 4, 8, 11, 16, 20, 21, 25], i, j), end=' ')
+        for j in range(6):
+            print(matrix([2 ,5 ,9 ,1, 3, 8, 4], [2, 1, 4, 5, 5, 0, 3], [0, 1, 1, 2 ,4 ,5, 7], i, j), end=' ')
 
     #for row in check:
     #print(check)

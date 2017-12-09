@@ -33,22 +33,31 @@ vector previousVariableValues (size, 0.0);
 // Будем выполнять итерационный процесс до тех пор,
 // пока не будет достигнута необходимая точность
 while (true)
-{
+    {
 // Введем вектор значений неизвестных на текущем шаге
-vector currentVariableValues (size);
+    vector currentVariableValues (size);
 
 // Посчитаем значения неизвестных на текущей итерации
 // в соответствии с теоретическими формулами
-for (int i = 0; i < size; i++) { // Инициализируем i-ую неизвестную значением // свободного члена i-ой строки матрицы currentVariableValues[i] = matrix[i][size]; // Вычитаем сумму по всем отличным от i-ой неизвестным for (int j = 0; j < size; j++) { // При j < i можем использовать уже посчитанные // на этой итерации значения неизвестных if (j < i) { currentVariableValues[i] -= matrix[i][j] * currentVariableValues[j]; } // При j > i используем значения с прошлой итерации
-if (j > i)
-{
-currentVariableValues[i] -= matrix[i][j] * previousVariableValues[j];
-}
-}
+    for (int i = 0; i < size; i++)
+        {// Инициализируем i-ую неизвестную значением
+         // свободного члена i-ой строки матрицы
+          currentVariableValues[i] = matrix[i][size];
+         // Вычитаем сумму по всем отличным от i-ой неизвестным
+          for (int j = 0; j < size; j++)
+            { // При j < i можем использовать уже посчитанные
+             // на этой итерации значения неизвестных
+              if (j < i) { currentVariableValues[i] -= matrix[i][j] * currentVariableValues[j]; }
+               // При j > i используем значения с прошлой итерации
+        if (j > i)
+            {
+            currentVariableValues[i] -= matrix[i][j] * previousVariableValues[j];
+            }
+            }
 
-// Делим на коэффициент при i-ой неизвестной
-currentVariableValues[i] /= matrix[i][i];
-}
+            // Делим на коэффициент при i-ой неизвестной
+            currentVariableValues[i] /= matrix[i][i];
+           }
 
 // Посчитаем текущую погрешность относительно предыдущей итерации
 long double error = 0.0;

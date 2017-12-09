@@ -1,5 +1,4 @@
 from . import courseach
-from . import convert_to_scr
 import unittest
 
 
@@ -11,4 +10,4 @@ class CourseTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main()/home/anton/programs
