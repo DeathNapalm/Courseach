@@ -35,7 +35,7 @@ def gauss_seidel(m, x0=None, eps=1e-4, max_iteration=100):
 
 
 if __name__ == '__main__':
-    m = [[3.6, 1.8, -4.7, 3.8], [2.7, -3.6, 1.9, 0.4], [1.5, 4.5, 3.3,-1.6]]
+    m = [[2, 1, 3], [1, -2, 1]] # это решает правильно
     print(gauss_seidel(m))
 
     # author: Worasait Suwannik http://bit.ly/wannik
