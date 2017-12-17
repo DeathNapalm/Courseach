@@ -25,7 +25,7 @@ for j in range(5):
         if i == j:
             b[j][i] = 1 - a[j][i]
         else:
-            b[j][i] = -a[j][i];
+            b[j][i] = -a[j][i]
 
 print(b)
 

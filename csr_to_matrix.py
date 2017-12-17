@@ -26,11 +26,11 @@ def matrix(alem,jptr,iptr,i,j):
 
 
 if __name__ == '__main__':
-    check = [[0]*6]*6
-    for i in range(6):
+    check = [[0]*3]*3
+    for i in range(3):
+        for j in range(3):
+            print(matrix([ 3.6 , 2.7,  1.5 , 1.8, -3.6 , 4.5 ,-4.7 , 1.9 , 3.3],[0 ,1, 2 ,0 ,1, 2 ,0 ,1 ,2],[0 ,3, 6 ,9],i,j),sep='\t',  end=' ')
         print('\n')
-        for j in range(6):
-            print(matrix([2 ,5 ,9 ,1, 3, 8, 4], [2, 1, 4, 5, 5, 0, 3], [0, 1, 1, 2 ,4 ,5, 7], i, j), end=' ')
-
     #for row in check:
     #print(check)
+    #sep='\t',
