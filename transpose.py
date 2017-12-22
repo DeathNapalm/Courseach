@@ -88,6 +88,8 @@ def transpose_a(aelem, jptr, iptr):
     iptr1.append(counter1)
     return aelem1, jptr1, iptr1
 
+
+
 if __name__ == '__main__':
     print(transpose_a([3.6, 1.8, -4.7, 2.7, -3.6, 1.9, 1.5, 4.5, 3.3], [0, 1, 2, 0, 1, 2, 0, 1, 2], [0, 3, 6, 9]))
 

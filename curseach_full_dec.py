@@ -14,7 +14,7 @@ def input_into_scr():     #massiv strok
     current_row = 0
     counter = 0
     for row in range(n):
-        for column in range(n+1):
+        for column in range(n):
             a = Decimal(input('введите а[{}][{}]: '.format(row,column)))
             if row != current_row:
                 iptr.append(counter)
@@ -23,6 +23,9 @@ def input_into_scr():     #massiv strok
                 aelem.append(a)
                 counter += 1
                 jptr.append(column)
+
+    for i in rang(n):
+
 
     iptr.append(counter)
     return aelem, jptr, iptr, eps
@@ -39,6 +42,27 @@ def matrix(aelem, jptr, iptr, i, j):
             break
     return res
 
+def transpose_a(aelem, jptr, iptr):
+    n = len(iptr)-1
+    aelem1 = []
+    jptr1 = []
+    iptr1 = [0]
+    current_row1 = 0
+    counter1 = 0
+
+    for row1 in range(n):
+        for column1 in range(n):
+            a = matrix(aelem,jptr, iptr,column1,row1)
+            if row1 != current_row1:
+                iptr1.append(counter1)
+                current_row1 = row1
+            if a != 0:
+                aelem1.append(a)
+                counter1 += 1
+                jptr1.append(column1)
+
+    iptr1.append(counter1)
+    return aelem1, jptr1, iptr1
 
 def seidel(aelem, jptr, iptr, eps):
     """Разработать программу для численного решения СЛАУ методом Зейделя

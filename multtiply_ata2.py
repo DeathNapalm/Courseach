@@ -47,34 +47,21 @@ def csr(a):     #massiv strok
     return aelem, jptr, iptr
 
 
+
 def multiply_ata(aelem,jptr, iptr, aelemb,jptrb, iptrb):
     """
     :type A: List[List[int]]
     :type B: List[List[int]]
     :rtype: List[List[int]]
     """
-    aelem1 = {}
-    jptr1 = []
-    iptr1 = iptrb
-    # current_row1 = 0
-    # counter1 = 0
-    # #a = 0
-
     m, n, l = len(iptr)-1, len(iptr)-1, len(iptrb)-1
     res = [[0 for _ in range(l)] for _ in range(m)]
     for i in range(m):
         for k in range(n):
-            if matrix(aelem, jptr, iptr, i, k):
+            if matrix(aelem,jptr, iptr,i,k):
                 for j in range(l):
-                    if i*m+j not in aelem1.keys():
-                        aelem1[i * (m) + j] =0
-                    else:
-                        aelem1[i * (m) + j] += matrix(aelem, jptr, iptr, i, k) * matrix(aelemb, jptrb, iptrb, k, j)
-                    #print(a)
-                    #jptr1.append(j)
-                #aelem1.append(a)
-        #a =0
-    return aelem1, jptr1, iptr1
+                    res[i][j]+=matrix(aelem,jptr, iptr,i,k)*matrix(aelemb,jptrb, iptrb,k,j)
+    return csr(res)
 
 
 
@@ -84,14 +71,3 @@ if __name__ == '__main__':
     # [22.5, 3.51, -6.840000000000003],
     # [3.51, 36.45, -0.45000000000000107],
     # [-6.840000000000003, -0.45000000000000107, 36.59]
-
-
-def multiply_ata(aelem,jptr, iptr, aelemb,jptrb, iptrb):
-    m, n, l = len(iptr) - 1, len(iptr) - 1, len(iptrb) - 1
-    res = [[0 for _ in range(l)] for _ in range(m)]
-    for i in range(m):
-        for k in range(n):
-            if matrix(aelem, jptr, iptr, i, k):
-                for j in range(l):
-                    res[i][j] +=matrix(aelem, jptr,iptr,i,k)*matrix(aelemb, jptrb,iptrb,k,j)
-    return csr(res)

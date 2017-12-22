@@ -64,15 +64,35 @@ def matrix(aelem, jptr, iptr, i, j):
             break
     return res
 
+
+# def multiply_ata(aelem,jptr, iptr, aelemb, jptrb, iptrb):
+#     m, n, l = len(iptr) - 1, len(iptr) - 1, len(iptrb) - 1
+#     res = [[0.0 for _ in range(l)] for _ in range(m)]
+#     for i in range(m):
+#         for k in range(n):
+#             if matrix(aelem, jptr, iptr, i, k):
+#                 for j in range(l):
+#                     res[i][j] += matrix(aelem, jptr,iptr,i,k)*matrix(aelemb, jptrb,iptrb,k,j)
+#     print(csr(res))
+#     return csr(res)
+
+
 def multiply_ata(aelem,jptr, iptr, aelemb,jptrb, iptrb):
-    m, n, l = len(iptr) - 1, len(iptr) - 1, len(iptrb) - 1
-    res = [[0.0 for _ in range(l)] for _ in range(m)]
+    """
+    :type A: List[List[int]]
+    :type B: List[List[int]]
+    :rtype: List[List[int]]
+    """
+    m, n, l = len(iptr)-1, len(iptr)-1, len(iptrb)-1
+    res = [[0 for _ in range(l)] for _ in range(m)]
     for i in range(m):
         for k in range(n):
-            if matrix(aelem, jptr, iptr, i, k):
+            if matrix(aelem,jptr, iptr,i,k):
                 for j in range(l):
-                    res[i][j] +=matrix(aelem, jptr,iptr,i,k)*matrix(aelemb, jptrb,iptrb,k,j)
+                    res[i][j]+=matrix(aelem,jptr, iptr,i,k)*matrix(aelemb,jptrb, iptrb,k,j)
+    #print(csr(res))
     return csr(res)
+
 
 def csr(a):     #massiv strok
     aelem = []  #j  sto]bec, i stroka
@@ -92,23 +112,23 @@ def csr(a):     #massiv strok
 
     iptr.append(counter)
 
-
     return aelem, jptr, iptr
 
 
-def multiply_atb(aelem,jptr, iptr, b):
+def multiply_atb(aelem, jptr, iptr, b):
     """
     :type A: List[List[int]]
     :type B: List[List[int]]
     :rtype: List[List[int]]
     """
     m, n, l = len(iptr)-1, len(iptr)-1, 1
-    res = [0.0 for _ in range(m)]
+    res = [[0.0 for _ in range(l)]for _ in range(m)]
     for i in range(m):
         for k in range(n):
             for j in range(l):
-                res[i] += matrix(aelem, jptr, iptr, i, k) * b[k]
-    return res
+                res[i][j] += matrix(aelem, jptr, iptr, i, k) * b[k]
+    #print([res[i][0] for i in range(m)])
+    return [res[i][0] for i in range(m)]
 
 
 def seidel(aelem, jptr, iptr, b, eps):
@@ -119,9 +139,9 @@ def seidel(aelem, jptr, iptr, b, eps):
     x = [.0 for i in range(n)]
     converge = False
 
-    aelemt,jptrt,iptrt = transpose_a(aelem,jptr, iptr)
-    aelemata,jptrata,iptrata = multiply_ata(aelem, jptr, iptr, aelemt, jptrt,iptrt)
-    bta = multiply_atb(aelemt,jptrt, iptrt, b)
+    aelemt, jptrt, iptrt = transpose_a(aelem,jptr, iptr)
+    aelemata, jptrata, iptrata = multiply_ata(aelemt, jptrt, iptrt, aelem, jptr,iptr)
+    bta = multiply_atb(aelemt, jptrt, iptrt, b)
 
     while not converge:
         x_new = deepcopy(x)
@@ -144,4 +164,6 @@ if __name__ == '__main__':
     #print(seidel([0.945, -0.5882, 50.0, -0.017, 0.9806, -0.0114, -15.2371, -0.0153, 0.9876, -0.0107, -14.2308, -0.1111, 0.9188, -0.5, -0.75, 0.9378, -48.0], [0, 1, 5, 0, 1, 2, 5, 1, 2, 3, 5, 2, 3, 4, 3, 4, 5], [0, 3, 7, 11, 14, 17], 0.0001))
     #aelem, jptr, iptr,b, eps = input_into_scr()
     #print(seidel(aelem, jptr, iptr,b, eps))
-    print(seidel([5, 7, 1, 9, 10, 13, 2, 0, 11], [0, 1, 2, 0, 1, 2, 0, 1, 2], [0, 3, 6, 9], [13, 32, 13], 0.001))
+    #print(seidel([3.6, 1.8, -4.7, 2.7, -3.6, 1.9, 1.5, 4.5, 3.3], [0, 1, 2, 0, 1, 2, 0, 1, 2], [0, 3, 6, 9], [3.8, 0.4, -1.6], 0.001))
+    #print(seidel([5,7,1,9,10,13,2,0,11], [0,1,2,0,1,2,0,1,2],[0,3,6,9], [13,32,13],0.00000000000000000000000000000000000000000000000000000000001))
+    print(seidel([5,7,1,10,14,2,2,0,11], [0,1,2,0,1,2,0,1,2],[0,3,6,9], [13,26,13],0.00000000000000000000000000000000000000000000000000000000001))
